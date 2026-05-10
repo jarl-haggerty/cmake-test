@@ -11,12 +11,22 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
+    - run: curl https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.8/LLVM-21.1.8-win64.exe -o LLVM-21.1.8-win64.exe
+    - run: ./LLVM-21.1.8-win64.exe /S
+    - run: echo 'C:\Program Files\LLVM\bin' >> $env:GITHUB_PATH
+    - run: where clang
     - run: git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git "$env:USERPROFILE/depot_tools"
     - run: echo "$env:USERPROFILE/depot_tools" >> $env:GITHUB_PATH
     - run: gclient
       shell: cmd
     - run: gclient sync --no-history --nohooks
       shell: cmd
+    - shell: bash
+      run: |
+        cat << EOF > crashpad/out/Default/args.gn
+        clang_path="C:\PROGRA~1\LLVM\bin"
+        EOF
+    - run: cat crashpad/out/Default/args.gn
     - run: cd crashpad && gn gen out/Default
       shell: cmd
     - run: ninja -v -C crashpad/out/Default obj/client/client.lib obj/client/common.lib obj/util/util.lib obj/third_party/mini_chromium/mini_chromium/base/base.lib crashpad_handler.exe
