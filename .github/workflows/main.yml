@@ -14,7 +14,7 @@ jobs:
     - run: curl https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.8/LLVM-21.1.8-win64.exe -L -o LLVM-21.1.8-win64.exe
     - run: ./LLVM-21.1.8-win64.exe /S
     - run: echo 'C:\Program Files\LLVM\bin' >> $env:GITHUB_PATH
-    - run: where clang
+    - run: get-command clang
     - run: git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git "$env:USERPROFILE/depot_tools"
     - run: echo "$env:USERPROFILE/depot_tools" >> $env:GITHUB_PATH
     - run: gclient
@@ -23,6 +23,7 @@ jobs:
       shell: cmd
     - shell: bash
       run: |
+        mkdir -p crashpad/out/Default
         cat << EOF > crashpad/out/Default/args.gn
         clang_path="C:\PROGRA~1\LLVM\bin"
         EOF
