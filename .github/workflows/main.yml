@@ -10,5 +10,14 @@ jobs:
   build-windows:
     runs-on: windows-latest
     steps:
+    - uses: actions/checkout@v4
     - run: git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git "$env:USERPROFILE/depot_tools"
-    - run: "& \"$env:USERPROFILE/depot_tools/ninja\" --version"
+    - run: echo "$env:USERPROFILE/depot_tools" >> $env:GITHUB_PATH
+    - run: gclient
+      shell: cmd
+    - run: gclient sync --no-history --nohooks
+      shell: cmd
+    - run: cd crashpad && gn gen out/Default
+      shell: cmd
+    - run: ninja -C crashpad/out/Default obj/client/libclient.a obj/client/libcommon.a obj/util/libutil.a obj/third_party/mini_chromium/mini_chromium/base/libbase.a crashpad_handler
+      shell: cmd
