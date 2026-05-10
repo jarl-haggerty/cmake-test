@@ -10,7 +10,5 @@ jobs:
   build-windows:
     runs-on: ubuntu-latest
     steps:
-    - name: Build
-      uses: docker://ubuntu:18.04
-      with:
-        entrypoint: python --version
+    - run: clang --version
+    - run: clang-18 --version
