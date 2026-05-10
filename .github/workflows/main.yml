@@ -1,0 +1,16 @@
+name: Build Mac
+
+on:
+  workflow_dispatch: {}
+    
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+    - name: Build
+      uses: docker://ubuntu:18.04
+      with:
+        entrypoint: python --version
