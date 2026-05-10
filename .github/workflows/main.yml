@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   build-windows:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - name: Build
       uses: docker://ubuntu:18.04
