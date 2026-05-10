@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   build-windows:
-    runs-on: ubuntu-22.04
+    runs-on: windows-latest
     steps:
-    - run: clang --version
-    - run: ls /usr/bin/clang*
+    - run: git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git "$env:USERPROFILE/depot_tools"
+    - run: "& \"$env:USERPROFILE/depot_tools/ninja\" --version"
