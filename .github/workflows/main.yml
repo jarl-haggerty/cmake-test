@@ -11,4 +11,4 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - run: clang --version
-    - run: clang-18 --version
+    - run: ls /usr/bin/clang*
