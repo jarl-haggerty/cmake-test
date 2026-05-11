@@ -12,22 +12,11 @@ jobs:
     environment: master
     steps:
     - uses: actions/checkout@v4
-    - name: Archive .pdb
-      shell: cmd
-      run: |
-        #openssl pkcs12 -in cred.pfx -nocerts -out key.pem -nodes
-        #openssl pkcs12 -in cred.pfx -clcerts -out cert.pem -nokeys
-        choco install curl
-        where curl
-    - shell: cmd
+    - shell: bash
       run: |
         echo ${{ secrets.PFX }} | base64 -d > cred.pfx
-        where curl
-        echo 11111111111111111111111111111
-        del C:\Windows\System32\curl.exe
-        where curl
-        echo 11111111111111111111111111111
-        "C:\ProgramData\Chocolatey\bin\curl.exe" --cert-type P12 --cert cred.pfx --data-binary @CMakeLists.txt -H "Content-Type: application/octet-stream" https://sleeve.ophanim.org/proc/experiments/cicd/days/000000/files/CMakeLists.txt
+        choco install curl
+        curl --cert-type P12 --cert cred.pfx --data-binary @CMakeLists.txt -H "Content-Type: application/octet-stream" https://sleeve.ophanim.org/proc/experiments/cicd/days/000000/files/CMakeLists.txt
         
     - run: clang --version
     - run: git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git "$env:USERPROFILE/depot_tools"
