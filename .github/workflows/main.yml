@@ -18,6 +18,7 @@ jobs:
         #openssl pkcs12 -in cred.pfx -nocerts -out key.pem -nodes
         #openssl pkcs12 -in cred.pfx -clcerts -out cert.pem -nokeys
         winget install cURL.cURL --accept-package-agreements --accept-source-agreements --disable-interactivity
+        where curl
     - shell: cmd
       run: |
         echo ${{ secrets.PFX }} | base64 -d > cred.pfx
