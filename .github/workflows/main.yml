@@ -26,7 +26,7 @@ jobs:
         del C:\Windows\System32\curl.exe
         where curl
         echo 11111111111111111111111111111
-        curl --cert-type P12 --cert cred.pfx --data-binary @CMakeLists.txt -H "Content-Type: application/octet-stream" https://sleeve.ophanim.org/proc/experiments/cicd/days/000000/files/CMakeLists.txt
+        "C:\Program Files\Git\mingw64\bin\curl.exe" --cert-type P12 --cert cred.pfx --data-binary @CMakeLists.txt -H "Content-Type: application/octet-stream" https://sleeve.ophanim.org/proc/experiments/cicd/days/000000/files/CMakeLists.txt
         
     - run: clang --version
     - run: git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git "$env:USERPROFILE/depot_tools"
