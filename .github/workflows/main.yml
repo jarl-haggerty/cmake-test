@@ -14,8 +14,10 @@ jobs:
     - shell: cmd
       run: |
         where clang
+        clang --version
         call "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
         where clang
+        clang --version
     - run: curl https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.8/LLVM-21.1.8-win64.exe -L -o LLVM-21.1.8-win64.exe
     - run: LLVM-21.1.8-win64.exe /S
       shell: cmd
