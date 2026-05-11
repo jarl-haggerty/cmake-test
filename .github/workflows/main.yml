@@ -18,7 +18,7 @@ jobs:
       run: |
         choco install curl
         where curl
-        curl --cert-type P12 --cert cred.pfx --data-binary @CMakeLists.txt -H "Content-Type: application/octet-stream" https://sleeve.ophanim.org/proc/experiments/cicd/days/000000/files/CMakeLists.txt
+        curl --cert-type P12 --cert cred.pfx --data-binary @CMakeLists.txt -H "Content-Type: application/octet-stream" https://sleeve.ophanim.org/proc/experiments/cicd/days/000000/files/CMakeLists2.txt
         
     - run: clang --version
     - run: git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git "$env:USERPROFILE/depot_tools"
