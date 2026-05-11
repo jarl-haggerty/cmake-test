@@ -13,16 +13,19 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Archive .pdb
-      shell: bash
+      shell: cmd
       run: |
-        echo ${{ secrets.PFX }} | base64 -d > cred.pfx
         #openssl pkcs12 -in cred.pfx -nocerts -out key.pem -nodes
         #openssl pkcs12 -in cred.pfx -clcerts -out cert.pem -nokeys
-        #winget install cURL.cURL --accept-package-agreements --accept-source-agreements --disable-interactivity
-        #where curl
-        #echo 11111111111111111111111111111
-        #del C:\Windows\System32\curl.exe
-        #where curl
+        winget install cURL.cURL --accept-package-agreements --accept-source-agreements --disable-interactivity
+    - shell: cmd
+      run: |
+        echo ${{ secrets.PFX }} | base64 -d > cred.pfx
+        where curl
+        echo 11111111111111111111111111111
+        del C:\Windows\System32\curl.exe
+        where curl
+        echo 11111111111111111111111111111
         curl --cert-type P12 --cert cred.pfx --data-binary @CMakeLists.txt -H "Content-Type: application/octet-stream" https://sleeve.ophanim.org/proc/experiments/cicd/days/000000/files/CMakeLists.txt
         
     - run: clang --version
