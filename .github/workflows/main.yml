@@ -18,7 +18,7 @@ jobs:
         echo ${{ secrets.PFX }} | base64 -d > cred.pfx
         #openssl pkcs12 -in cred.pfx -nocerts -out key.pem -nodes
         #openssl pkcs12 -in cred.pfx -clcerts -out cert.pem -nokeys
-        winget install cURL.cURL
+        winget install cURL.cURL --accept-package-agreements --accept-source-agreements --disable-interactivity
         where curl
         echo 11111111111111111111111111111
         del C:\Windows\System32\curl.exe
