@@ -12,31 +12,20 @@ jobs:
     environment: master
     steps:
     - uses: actions/checkout@v4
-    - shell: bash
-      run: echo ${{ secrets.PFX }} | base64 -d > cred.pfx
-    - shell: cmd
+      with:
+        repository: cajigaslab/Thalamus
+        path: Thalamus
+
+    - name: Restore
       run: |
-        choco install curl
-        where curl
-        curl --cert-type P12 --cert cred.pfx --data-binary @CMakeLists.txt -H "Content-Type: application/octet-stream" https://sleeve.ophanim.org/proc/experiments/cicd/days/000000/files/CMakeLists2.txt
+        cd Thalamus/dotnet
+        msbuild -t:restore "/p:Platform=Any CPU"
+
+    - name: Build
+      run: |
+        cd Thalamus/dotnet
+        msbuild dotnet.sln /p:Configuration=Debug "/p:Platform=Any CPU"
         
-    - run: clang --version
-    - run: git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git "$env:USERPROFILE/depot_tools"
-    - run: echo "$env:USERPROFILE/depot_tools" >> $env:GITHUB_PATH
-    - run: gclient
-      shell: cmd
-    - run: gclient sync --no-history --nohooks
-      shell: cmd
-    #- shell: cmd
-    #  run: mklink /j D:\LLVM "C:\Program Files\LLVM"
-    - shell: bash
+    - name: Check
       run: |
-        mkdir -p crashpad/out/Default
-        cat << EOF > crashpad/out/Default/args.gn
-        clang_path="C:/Program Files/LLVM"
-        EOF
-    - run: cat crashpad/out/Default/args.gn
-    - run: cd crashpad && gn gen out/Default
-      shell: cmd
-    - run: ninja -v -C crashpad/out/Default obj/client/client.lib obj/client/common.lib obj/util/util.lib obj/third_party/mini_chromium/mini_chromium/base/base.lib crashpad_handler.exe
-      shell: cmd
+        ls Thalamus/dotnet/dotnet/bin/Debug
