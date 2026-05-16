@@ -17,15 +17,20 @@ jobs:
         path: Thalamus
 
     - name: Restore
+      shell: cmd
       run: |
+        call "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
         cd Thalamus/dotnet
         msbuild -t:restore "/p:Platform=Any CPU"
 
     - name: Build
+      shell: cmd
       run: |
+        call "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
         cd Thalamus/dotnet
         msbuild dotnet.sln /p:Configuration=Debug "/p:Platform=Any CPU"
         
     - name: Check
+      shell: cmd
       run: |
-        ls Thalamus/dotnet/dotnet/bin/Debug
+        dir Thalamus/dotnet/dotnet/bin/Debug
