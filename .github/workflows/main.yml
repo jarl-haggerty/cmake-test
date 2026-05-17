@@ -15,6 +15,7 @@ jobs:
       with:
         repository: cajigaslab/Thalamus
         path: Thalamus
+        ref: devel
 
     - name: Restore
       shell: cmd
