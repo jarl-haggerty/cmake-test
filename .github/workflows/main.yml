@@ -23,12 +23,12 @@ jobs:
         dir "C:\"
         dir "C:\Program Files"
         dir "C:\Program Files\Microsoft Visual Studio"
-        dir "C:\Program Files\Microsoft Visual Studio\2022"
-        dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise"
-        dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC"
-        dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary"
-        dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build"
-        call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+        dir "C:\Program Files\Microsoft Visual Studio\18"
+        dir "C:\Program Files\Microsoft Visual Studio\18\Enterprise"
+        dir "C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC"
+        dir "C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary"
+        dir "C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\Build"
+        call "C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
         cl /?
         cd Thalamus/dotnet
         msbuild -t:restore "/p:Platform=Any CPU"
