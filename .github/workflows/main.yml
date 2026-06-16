@@ -20,6 +20,7 @@ jobs:
     - name: Restore
       shell: cmd
       run: |
+        dir "C:\\"
         dir "C:\\Program Files"
         dir "C:\\Program Files\\Microsoft Visual Studio"
         dir "C:\\Program Files\\Microsoft Visual Studio\\2022"
