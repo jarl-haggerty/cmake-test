@@ -28,7 +28,7 @@ jobs:
         dir "C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC"
         dir "C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary"
         dir "C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\Build"
-        call "C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+        call "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
         cl /?
         cd Thalamus/dotnet
         msbuild -t:restore "/p:Platform=Any CPU"
