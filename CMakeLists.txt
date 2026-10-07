@@ -1,40 +1,15 @@
-cmake_minimum_required(VERSION 3.10)
-project(ThorImageCMake LANGUAGES CXX CSharp)
+  cmake_minimum_required(VERSION 3.16)
+  project(hello NONE)
 
-include(CSharpUtilities)
+  # Writes hello.txt with cmd.exe's echo. The redirection is part of the string
+  # cmd /c runs, so it's one quoted argument (VERBATIM keeps it intact), and
+  # there's no space before '>' or the file would end with "hello ".
+  add_custom_command(
+    OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/hello.txt"
+    COMMAND cmd /c "echo hello>hello.txt"
+    WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+    COMMENT "Writing hello.txt"
+    VERBATIM)
 
-if(NOT DEFINED CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Debug)
-endif()
-
-add_library(One SHARED
-  "One/UserControl1.xaml"
-  "One/UserControl1.xaml.cs")
-set_property(TARGET One PROPERTY VS_DOTNET_REFERENCES
-  PresentationCore
-  PresentationFramework
-  System
-  System.Core
-  System.Data
-  System.Data.DataSetExtensions
-  System.Xaml
-  System.Xml
-  System.Xml.Linq
-  WindowsBase)
-set_property(TARGET One PROPERTY VS_DOTNET_TARGET_FRAMEWORK_VERSION "v4.8")
-
-add_library(Two SHARED
-  "Two/UserControl1.xaml"
-  "Two/UserControl1.xaml.cs")
-set_property(TARGET Two PROPERTY VS_DOTNET_REFERENCES
-  PresentationCore
-  PresentationFramework
-  System
-  System.Core
-  System.Data
-  System.Data.DataSetExtensions
-  System.Xaml
-  System.Xml
-  System.Xml.Linq
-  WindowsBase)
-set_property(TARGET Two PROPERTY VS_DOTNET_TARGET_FRAMEWORK_VERSION "v4.8")
+  # A custom command only runs when something depends on its output.
+  add_custom_target(hello ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/hello.txt")
