@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.16)
 project(hello NONE)
 
+include(FetchContent)
+
 # Writes hello.txt with cmd.exe's echo. The redirection is part of the string
 # cmd /c runs, so it's one quoted argument (VERBATIM keeps it intact), and
 # there's no space before '>' or the file would end with "hello ".
