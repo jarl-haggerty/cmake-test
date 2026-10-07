@@ -6,7 +6,7 @@
   # there's no space before '>' or the file would end with "hello ".
   add_custom_command(
     OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/hello.txt"
-    COMMAND cmd /c "echo hello>hello.txt"
+    COMMAND cmd /c hello.bat
     WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
     COMMENT "Writing hello.txt"
     VERBATIM)
