@@ -15,6 +15,10 @@ jobs:
     - name: Restore
       shell: cmd
       run: |
+        call "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
+        where clang
+        where clang++
+
         mkdir build
-        cmake -S . -B build -G Ninja
+        cmake -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -S . -B build -G Ninja
         cmake --build build
