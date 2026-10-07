@@ -11,6 +11,7 @@ jobs:
     runs-on: windows-latest
     environment: master
     steps:
+    - uses: actions/checkout@v7
     - name: Restore
       shell: cmd
       run: |
