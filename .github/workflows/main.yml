@@ -14,5 +14,5 @@ jobs:
     - name: Restore
       shell: cmd
       run: |
-        echo "echo hello" > test.bat
+        echo echo hello > test.bat
         cmd /c call test.bat
