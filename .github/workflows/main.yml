@@ -11,36 +11,8 @@ jobs:
     runs-on: windows-latest
     environment: master
     steps:
-    - uses: actions/checkout@v4
-      with:
-        repository: cajigaslab/Thalamus
-        path: Thalamus
-        ref: devel
-
     - name: Restore
       shell: cmd
       run: |
-        dir "C:\"
-        dir "C:\Program Files"
-        dir "C:\Program Files\Microsoft Visual Studio"
-        dir "C:\Program Files\Microsoft Visual Studio\18"
-        dir "C:\Program Files\Microsoft Visual Studio\18\Enterprise"
-        dir "C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC"
-        dir "C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary"
-        dir "C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\Build"
-        call "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
-        cl /?
-        cd Thalamus/dotnet
-        msbuild -t:restore "/p:Platform=Any CPU"
-
-    - name: Build
-      shell: cmd
-      run: |
-        call "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
-        cd Thalamus/dotnet
-        msbuild dotnet.sln /p:Configuration=Release "/p:Platform=Any CPU"
-        
-    - name: Check
-      shell: cmd
-      run: |
-        dir Thalamus\dotnet\dotnet\bin\Release
+        echo "echo hello" > test.bat
+        cmd /c call test.bat
