@@ -5,11 +5,11 @@
   # cmd /c runs, so it's one quoted argument (VERBATIM keeps it intact), and
   # there's no space before '>' or the file would end with "hello ".
   add_custom_command(
-    OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/hello.txt"
+    OUTPUT "${CMAKE_SOURCE_DIR}/hello.txt"
     COMMAND cmd /c hello.bat
-    WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+    WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
     COMMENT "Writing hello.txt"
     VERBATIM)
 
   # A custom command only runs when something depends on its output.
-  add_custom_target(hello ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/hello.txt")
+  add_custom_target(hello ALL DEPENDS "${CMAKE_SOURCE_DIR}/hello.txt")
