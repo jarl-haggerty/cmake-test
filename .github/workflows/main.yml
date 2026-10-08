@@ -27,5 +27,5 @@ jobs:
         where ninja
 
         mkdir build
-        cmake -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -S . -B build -G Ninja
+        cmake -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DCMAKE_MAKE_PROGRAM=%CD%\depot_tools\ninja.bat -S . -B build -G Ninja
         cmake --build build
