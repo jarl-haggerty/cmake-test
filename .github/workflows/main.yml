@@ -16,9 +16,11 @@ jobs:
       run: |
         git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
         echo %CD%\\depot_tools >> $GITHUB_PATH
+        echo %CD%\depot_tools >> $GITHUB_PATH
     - name: Restore
       shell: cmd
       run: |
+        echo %PATH%
         call "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
         gclient
         where clang
