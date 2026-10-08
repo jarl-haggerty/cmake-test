@@ -15,8 +15,7 @@ jobs:
     - shell: cmd
       run: |
         git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
-        echo %CD%\\depot_tools >> $GITHUB_PATH
-        echo %CD%\depot_tools >> $GITHUB_PATH
+        echo %CD%\depot_tools >> %GITHUB_PATH%
     - name: Restore
       shell: cmd
       run: |
