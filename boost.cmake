@@ -16,7 +16,7 @@ FetchContent_MakeAvailable(boost_content)
 
 if(WIN32)
   add_custom_command(OUTPUT "${boost_content_SOURCE_DIR}/b2.exe"
-    COMMAND cmd /c call bootstrap.bat clang-win
+    COMMAND cmd /c set NoDefaultCurrentDirectoryInExePath && call bootstrap.bat clang-win
     WORKING_DIRECTORY ${boost_content_SOURCE_DIR})
 else()
   add_custom_command(OUTPUT "${boost_content_SOURCE_DIR}/b2"
@@ -145,4 +145,4 @@ else()
 endif()
 target_include_directories(boost INTERFACE "${boost_content_SOURCE_DIR}")
 target_compile_definitions(boost INTERFACE BOOST_ALL_NO_LIB)
-add_custom_target(build-boost DEPENDS boost)
+add_custom_target(build-boost ALL DEPENDS boost)
