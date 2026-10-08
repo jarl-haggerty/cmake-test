@@ -21,7 +21,7 @@ jobs:
       run: |
         echo %PATH%
         call "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
-        gclient
+        call gclient
         where clang
         where clang++
         where ninja
