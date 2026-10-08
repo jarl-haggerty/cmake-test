@@ -12,12 +12,18 @@ jobs:
     environment: master
     steps:
     - uses: actions/checkout@v7
+    - shell: cmd
+      run: |
+        git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+        echo %CD%/depot_tools >> $GITHUB_PATH
     - name: Restore
       shell: cmd
       run: |
         call "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
+        gclient
         where clang
         where clang++
+        where ninja
 
         mkdir build
         cmake -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -S . -B build -G Ninja
